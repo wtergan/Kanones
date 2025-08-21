@@ -9,7 +9,7 @@ This file centralizes canonical definitions referenced by all other rules. Do no
 ```
 kanónes/
 ├── README.md
-├── cursor/rules/kanónes/               # Cursor rules (this folder)
+├── .cursor/rules/.kanónes/             # Cursor rules (this folder)
 │   ├── root.mdc
 │   ├── workflow.mdc                    # Canonical workflow diagram + narrative
 │   ├── standards.mdc                   # You are here
