@@ -43,38 +43,53 @@ An agent-ready ruleset for Cursor, VS Code, and Windsurf that combines:
 ## Directory Structure
 
 ```
-└── kanónes/
-	├── README.md
-	├── docs/
-	│   └── diagrams.md                    # Mermaid workflow diagrams
-	├── .cursor/rules/.kanónes/
-	│   ├── root.mdc               # Entry point and guarantees
-	│   ├── workflow.mdc           # Canonical lifecycle diagram + narrative
-	│   ├── standards.mdc          # SoT: dir map, IDs, icons, gates, expansion
-	│   ├── context-vault.mdc      # Context management & sync
-	│   ├── session-lifecycle.mdc    # Operator checklist (links to SoT)
-	│   ├── plans.mdc         # PRD (PLAN.md) + PRP (Feature) templates
-	│   ├── tasks.mdc         # YAML schema, Impl. Details, expansion refs
-	│   └── expand.mdc             # Trimmed examples; policy in standards
-	├── .vscode/rules/.kanónes/    # Same structure as .cursor/
-	└── .windsurf/rules/.kanónes/  # Same structure as .cursor/
-	└── .vault/                            # Context Vault (runtime)
-	    ├── memory/                       # Persistent project context
-	    │   ├── brief.md                  # Mission & constraints
-	    │   ├── active-context.md         # Current focus & state
-	    │   ├── patterns.md               # Conventions & decisions
-	    │   ├── progress.md               # Change journal
-	    │   └── agent-notes.md            # Multi-agent tips
-	    ├── plans/                        # Project plans & PRPs
-	    │   ├── PLAN.md                   # Global project overview
-	    │   ├── features/                 # Feature-specific PRPs
-	    │   ├── archives/                 # Completed PRPs
-	    │   └── PLANS_LOG.md              # Plan history
-	    └── tasks/                        # Task management
-	        ├── TASKS.md                  # Active task checklist
-	        ├── task{id}_*.md             # Individual task files
-	        ├── archives/                 # Completed tasks
-	        └── TASKS_LOG.md              # Task history
+kanónes/
+├── README.md
+├── docs/
+│   ├── diagrams-educational.md
+│   ├── diagrams.md
+│   └── unified-workflow-educational.md
+├── scripts/
+│   └── info_audit.sh
+├── .github/
+│   └── instructions/
+│       ├── context-vault.instructions.md
+│       ├── expand.instructions.md
+│       ├── plans.instructions.md
+│       ├── root.instructions.md
+│       ├── session-lifecycle.instructions.md
+│       ├── standards.instructions.md
+│       ├── tasks.instructions.md
+│       └── workflow.instructions.md
+├── .vault/
+│   └── memory/
+│       ├── active-context.md
+│       ├── agent-notes.md
+│       ├── brief.md
+│       ├── patterns.md
+│       └── progress.md
+├── .windsurf/
+│   └── rules/
+│       └── .kanónes/
+│           ├── context-vault.md
+│           ├── expand.md
+│           ├── plans.md
+│           ├── root.md
+│           ├── session-lifecycle.md
+│           ├── standards.md
+│           ├── tasks.md
+│           └── workflow.md
+├── .cursor/
+│   └── rules/
+│       └── .kanónes/
+│           ├── context-vault.mdc
+│           ├── expand.mdc
+│           ├── plans.mdc
+│           ├── root.mdc
+│           ├── session-lifecycle.mdc
+│           ├── standards.mdc
+│           ├── tasks.mdc
+│           └── workflow.mdc
 ```
 
 ## Quick Start (Review Mode)
@@ -97,19 +112,19 @@ An agent-ready ruleset for Cursor, VS Code, and Windsurf that combines:
 ## Quick Start (Activation)
 
 1. **Setup Rules**
-   - Copy `.cursor/rules/.kanónes/` to project root `.cursor/rules/.kanónes/`
-   - Or use `.vscode/rules/.kanónes/` or `.windsurf/rules/.kanónes/` for other IDEs
-   - IDE or agent will auto-discover and activate the rules
+    - Copy `.cursor/rules/.kanónes/` to project root `.cursor/rules/.kanónes/`
+    - Or use `.github/instructions/` or `.windsurf/rules/.kanónes/` for other IDEs
+    - IDE or agent will auto-discover and activate the rules
 
 2. **Initialize Context Vault**
-   - Create `.vault/memory/` directory in project root
-   - Add starter files: `brief.md`, `active-context.md`, `patterns.md`, `progress.md`
-   - Use templates from the rule files to populate initial content
+    - Create `.vault/memory/` directory in project root
+    - Add starter files: `brief.md`, `active-context.md`, `patterns.md`, `progress.md`
+    - Use templates from the rule files to populate initial content
 
 3. **Setup Task Management**
-   - Create `.vault/tasks/TASKS.md` for active task overview
-   - Create `.vault/plans/PLAN.md` for project overview
-   - Individual task files will be created automatically
+    - Create `.vault/tasks/TASKS.md` for active task overview
+    - Create `.vault/plans/PLAN.md` for project overview
+    - Individual task files will be created automatically
 
 ## Core Workflows
 
@@ -148,13 +163,15 @@ graph TD
 ## Command Reference
 
 ### Task Management
+### Task Management
 - `create tasks from <PRP>` - Generate tasks from a PRP
-- `show tasks` - Display TASKS.md
+- `show tasks` - Display `.vault/tasks/TASKS.md`
 - `show task {id}` - Display specific task details
 - `start task {id}` - Begin work on task
 - `complete task {id}` - Mark task complete
 - `block task {id} waiting on {deps}` - Mark as blocked
 
+### Planning
 ### Planning
 - `@expand.mdc analyze task {id}` - Break down complex tasks
 - `@plans.mdc create PRP for <feature>` - Create new PRP
@@ -175,7 +192,8 @@ graph TD
 - Debug code cleanup requirements
 
 ### 📊 **Quality**
-- Maximum 3-hour task sizing
+### 📊 **Quality**
+- Maximum 2-hour task sizing
 - Copy-paste ready implementation details
 - Exact validation commands with outputs
 - Rollback procedures for all changes
