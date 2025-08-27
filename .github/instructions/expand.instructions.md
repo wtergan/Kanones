@@ -1,5 +1,5 @@
 ---
-trigger: always_on
+applyTo: ".vault/tasks/task*"  # Narrow: only when editing/creating individual task files for decomposition
 description: Task decomposition and expansion logic for breaking down complex work into executable 2-hour tasks with proper dependency mapping
 ---
 
@@ -9,12 +9,15 @@ description: Task decomposition and expansion logic for breaking down complex wo
 ## Mode
 - Plan Mode only (analysis/decomposition). Output: recommended subtask structure with dependencies.
 Note: Canonical expansion policy lives in `@standards.md`.
+Reference: PRP template task format in `@plans.md → PRP Template (Feature) → Implementation Blueprint`.
 
 ## Principles
 - Short feedback loops; each slice validates independently.
 - Prefer vertical depth; finish a thin end-to-end path.
 - Postpone polish until correctness gates pass.
 - Subtasks should be 1–2 hours.
+- Follow PRP template task format: use MODIFY/CREATE patterns with FIND/INJECT/MIRROR operations.
+- Include per-task pseudocode with CRITICAL details and validation loops (Level 1-3).
 
 ## Expansion Criteria (any)
 - Effort > 2–3 hours; validation > 10 minutes; >2 unresolved deps/unknowns.
@@ -75,19 +78,64 @@ User commands that trigger expansion analysis:
 4. Is the validation strategy clear for each slice?
 5. Does expansion reduce overall project risk?
 
-## Example Expansion
+## Example Expansion (PRP-Aligned)
 
 ```markdown
 Original Task 15: Implement User Authentication
 
 After analysis, expanding into:
-- 15.1: Create auth database schema (1 hr)
-- 15.2: Implement JWT token service (2 hrs)  
-- 15.3: Add login/logout endpoints (2 hrs)
-- 15.4: Create middleware for route protection (1 hr)
-- 15.5: Add user session management (1 hr)
-- 15.6: Write integration tests (1 hr)
 
-Total: 8 hrs (original estimate: 6-8 hrs)
-Each subtask independently testable.
+Task 15.1:
+MODIFY src/models/user.py:
+  - FIND pattern: "class User"
+  - INJECT after line containing "email: str"
+  - ADD JWT-related fields and validation
+
+CREATE src/auth/jwt_service.py:
+  - MIRROR pattern from: src/auth/base_auth.py
+  - MODIFY class name and core logic
+  - KEEP error handling pattern identical
+
+Per task pseudocode:
+# Task 15.1
+# PATTERN: Always validate input first (see src/validators.py)
+async def create_jwt_token(user_id: str) -> str:
+    # GOTCHA: JWT library requires specific key format
+    validated = validate_user_id(user_id)
+    # CRITICAL: Use existing retry decorator for external calls
+    @retry(attempts=3, backoff=exponential)
+    async def _inner():
+        return await jwt.encode({"user_id": validated}, JWT_SECRET)
+    return await _inner()
+
+Task 15.2:
+MODIFY src/api/auth_routes.py:
+  - FIND pattern: "@app.post('/login')"
+  - INJECT JWT token creation logic
+  - PRESERVE existing route structure
+
+Task 15.3:
+CREATE tests/auth/test_jwt.py:
+  - MIRROR pattern from: tests/auth/test_base.py
+  - ADD JWT-specific test cases
+  - KEEP test structure identical
+
+# Level 1: Syntax & Style
+ruff check src/auth/jwt_service.py --fix
+mypy src/auth/jwt_service.py
+
+# Level 2: Unit Tests
+def test_jwt_happy_path():
+    """Basic JWT functionality works"""
+    token = create_jwt_token("user123")
+    assert decode_jwt_token(token) == "user123"
+
+# Level 3: Integration Test
+uv run python -m src.main --dev
+curl -X POST http://localhost:8000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"user":"test","pass":"test"}'
+
+Total: 6 hrs (original estimate: 4-6 hrs)
+Each subtask independently testable and follows PRP validation loop.
 ```

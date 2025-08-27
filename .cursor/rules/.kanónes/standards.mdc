@@ -1,7 +1,7 @@
 ---
 description: Centralized standards and conventions for Kanónes including directory structure, task IDs, status icons, quality gates, and archival policies
 globs:
-alwaysApply: false
+alwaysApply: true
 ---
 
 This file centralizes canonical definitions referenced by all other rules. Do not duplicate its contents elsewhere; link to sections here.
@@ -142,3 +142,5 @@ References: detailed heuristics in `@expand.mdc`. Task wiring in `@tasks.mdc`.
 - Workflow diagram and lifecycle: see `@workflow.mdc`.
 - Task lifecycle details: see `@tasks.mdc`.
 - Plan templates and guidance: see `@plans.mdc`.
+- PRP template with AI agent optimization: see `@plans.mdc → PRP Template (Feature)`.
+- Task generation from PRPs: see `@tasks.mdc → Creation Flow` and `@expand.mdc → Expansion Patterns`.

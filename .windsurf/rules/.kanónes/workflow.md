@@ -31,7 +31,7 @@ flowchart TD
 ```
 
 ## Narrative (10 lines)
-- Initialize by loading the Vault: brief, active-context, patterns, progress.
+- Initialize by loading the Vault: brief, active-context, patterns, progress, agent-notes.
 - Choose mode by user intent: Plan (write/organize) or Act (implement/test).
 - Plan mode produces a Thin PRP and tasks with deterministic IDs and clear validation.
 - Update TASKS.md with visual status and implementation indicators.
@@ -39,7 +39,7 @@ flowchart TD
 - Implement strictly via the task's Implementation Details; keep changes minimal.
 - Enforce Test Strategy Gate; run or confirm exact validation commands.
 - Mark complete only after cleanup and successful validation.
-- Sync Vault: update progress, evolve patterns, and archive completed items.
-- Prepare handoff by updating active-context with current state and next steps.
+- Sync Vault: update progress, evolve patterns, refresh agent-notes (extended handoff + retro), and archive completed items.
+- Prepare handoff: concise state & next steps in active-context; richer cross-agent context in agent-notes.
 
 See `@standards.md` for gates, IDs, and icon mappings.

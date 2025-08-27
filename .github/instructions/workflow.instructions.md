@@ -1,5 +1,5 @@
 ---
-trigger: always_on
+applyTo: ".kanónes/**"  # Applies when viewing/maintaining rules & workflow assets
 description: Visual workflow diagrams and process narratives showing the complete Kanónes session lifecycle from initialization through execution and synchronization
 ---
 
@@ -39,7 +39,7 @@ flowchart TD
 - Implement strictly via the task's Implementation Details; keep changes minimal.
 - Enforce Test Strategy Gate; run or confirm exact validation commands.
 - Mark complete only after cleanup and successful validation.
-- Sync Vault: update progress, evolve patterns, and archive completed items.
-- Prepare handoff by updating active-context with current state and next steps.
+- Sync Vault: update progress, evolve patterns, refresh agent-notes (extended handoff + retro), and archive completed items.
+- Prepare handoff: concise state & next steps in active-context; richer cross-agent context in agent-notes.
 
 See `@standards.md` for gates, IDs, and icon mappings.

@@ -1,26 +1,53 @@
-# Agent Notes
+# Agent Notes (Template)
 
-## Claude (Last: 2024-01-15)
-- Prefs: explicit file paths; chunk long outputs
-- Strengths: refactoring with types; structured templates
-- Quirks: confirm mode; watch token limits
+Purpose: Cross-agent operational memory (preferences, extended handoff, retros). Concise handoff stays in `active-context.md`; richer collaborative + meta workflow lives here. Promote stable insights to `patterns.md`.
 
-## GPT-4 (Last: 2024-01-14)
-- Strengths: architecture/system thinking; diagrams
-- Limits: may drift from conventions; reinforce Plan/Act
+## CLI Agents
 
-## Gemini (Last: 2024-01-13)
-- Strengths: boilerplate, docs, organizing content
-- Limits: verify complex logic; prefers structured prompts
+### Claude Code (Last: )
+- Prefs: <add once observed>
+- Strengths: <add>
+- Limits: <add>
+
+### Codex CLI (Last: )
+- Prefs: <add>
+- Strengths: <add>
+- Limits: <add>
+
+### Gemini CLI (Last: )
+- Prefs: <add>
+- Strengths: <add>
+- Limits: <add>
+
+## IDE Agents
+
+### Cursor (Last: )
+- Prefs: <add>
+- Strengths: <add>
+- Limits: <add>
+
+### VS Code (Last: )
+- Prefs: <add>
+- Strengths: <add>
+- Limits: <add>
+
+### Windsurf (Last: )
+- Prefs: <add>
+- Strengths: <add>
+- Limits: <add>
 
 ## Human Developer Notes
 - Indentation: spaces (2)
-- Tests must pass before completion
-- Keep TASKS.md and task files in sync
-- PR template: `.github/pull_request_template.md`
-- Commits: `Task {ID}: {Summary} [kanónes]`
+- Commit Format: `Task {ID}: {Summary} [kanónes]`
+- Keep TASKS.md synchronized with task files
 
 ## Session Retros (last 5)
-- YYYY-MM-DD — 1–2 bullet takeaways
+Format: YYYY-MM-DD — Agent — 1–2 bullets (coordination insight, friction, improvement). Avoid duplicating active-context handoff.
+- (placeholder)
 
-Note: Common gotchas, workflow tips, performance/integration notes, and troubleshooting were promoted to `patterns.md` (Operations). Keep this file ≤120 lines; promote stable notes after ~2 weeks.
+Guidance:
+- Use for meta-collaboration (handoff efficiency, pattern candidates, validation bottlenecks)
+- Do NOT restate next steps (active-context owns that)
+- Promote recurring process improvements (≥2 confirmations) to `patterns.md`
+
+Note: Keep ≤120 lines; blank `Last:` means unused. Use UTC ISO8601 timestamps when filled.

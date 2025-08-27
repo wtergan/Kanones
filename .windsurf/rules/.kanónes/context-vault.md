@@ -23,6 +23,7 @@ description: Memory management and synchronization for the Context Vault - handl
 2. Read active-context.md → Current state (10 sec)
 3. Skim patterns.md → Key conventions (10 sec)
 4. Check progress.md (last 5 entries) → Recent work (5 sec)
+5. Skim agent-notes.md → Last cross-agent handoff & prefs (5 sec)
 ```
 
 ### Full Initialize (60 seconds)
@@ -32,7 +33,7 @@ description: Memory management and synchronization for the Context Vault - handl
 4) progress.md — last 20 entries  
 5) TASKS.md — status scan  
 6) PLAN.md — roadmap/features  
-7) agent-notes.md — per-agent tips
+7) agent-notes.md — per-agent prefs, extended handoff, recent retros
 
 ### Output Template
 ```markdown
@@ -79,7 +80,7 @@ description: Memory management and synchronization for the Context Vault - handl
 
 5. If environment changed:
    - Update active-context.md
-   - Note in agent-notes.md if agent-specific
+   - Note in agent-notes.md if agent-specific (include tool/agent impacted)
 ```
 
 ### After Session End
@@ -89,11 +90,10 @@ description: Memory management and synchronization for the Context Vault - handl
    - In-progress work
    - Next priorities
 
-2. Add session summary to agent-notes.md:
-   - Agent identifier
-   - Date and duration
-   - What worked well
-   - Any issues encountered
+2. Extend agent-notes.md:
+   - Update relevant CLI or IDE section 'Last:' timestamp (UTC)
+   - Append/refresh Prefs/Strengths/Limits deltas (promote stable items to patterns)
+   - Add entry to Session Retros (focus: cross-agent coordination + workflow meta, NOT duplicate of active-context handoff)
 
 3. Quick scan for archive candidates:
    - Completed tasks older than 24h

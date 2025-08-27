@@ -98,18 +98,19 @@ error_log: null                        # Failure details if status: failed
 ## Implementation Details
 
 ### Overview
-Brief description of implementation approach
+Brief description of implementation approach aligned with PRP requirements
 
-### Files to Modify
-1. **path/to/file.ext**
-   - FIND: `search pattern`
-   - REPLACE: `new content`
+### Files to Modify (Use PRP Task Format)
+1. **MODIFY src/existing_module.py:**
+   - FIND pattern: "class OldImplementation"
+   - INJECT after line containing "def __init__"
+   - PRESERVE existing method signatures
 
-### New Files
-1. **path/to/newfile.ext**
-   ```language
-   // Complete file content
-   ```
+### New Files to Create
+1. **CREATE src/new_feature.py:**
+   - MIRROR pattern from: src/similar_feature.py
+   - MODIFY class name and core logic
+   - KEEP error handling pattern identical
 
 ### Database Changes
 ```sql
@@ -121,22 +122,29 @@ Brief description of implementation approach
 # Config changes
 ```
 
-### Test Strategy
-- Unit tests for new components
-- Integration tests for workflows
-- E2E tests for user scenarios
+### Test Strategy (Enhanced for PRP Validation Loop)
+- Level 1: Syntax & Style (ruff check, mypy)
+- Level 2: Unit Tests (following PRP test patterns)
+- Level 3: Integration Tests (following PRP validation commands)
 
-### Validation Commands
+### Validation Commands (PRP-Aligned)
 ```bash
-# Executable test commands
-npm test -- component.test.ts
-npm run test:integration
+# Level 1: Syntax & Style
+ruff check src/new_feature.py --fix
+mypy src/new_feature.py
+
+# Level 2: Unit Tests
+uv run pytest test_new_feature.py -v
+
+# Level 3: Integration Test
+uv run python -m src.main --dev
+curl -X POST http://localhost:8000/feature \
+  -H "Content-Type: application/json" \
+  -d '{"param": "test_value"}'
 ```
 
 ### Rollback Plan
-1. Step-by-step rollback procedures
-2. Data migration reversal
-3. Configuration restoration
+1. Step-by-step rollback procedures aligned with PRP rollout & operations
 ```
 
 ## Test Strategy Enforcement
@@ -232,7 +240,7 @@ On trigger:
 ## Agent Commands
 - Use your preferred commands; ensure they honor `@standards.md` gates, IDs, and archive rules.
 
-## Example Task File
+## Example Task File (PRP-Aligned)
 
 ```markdown
 ---
@@ -266,39 +274,76 @@ Implement JWT-based authentication system with token generation, validation, and
 
 ## Implementation Details
 
-### Files to Modify
-1. **src/auth/jwt.service.ts**
-   ```typescript
-   import jwt from 'jsonwebtoken';
-   
-   export class JWTService {
-     generateToken(userId: string): string {
-       return jwt.sign({ userId }, process.env.JWT_SECRET, {
-         expiresIn: '1h'
-       });
-     }
-     
-     verifyToken(token: string): { userId: string } {
-       return jwt.verify(token, process.env.JWT_SECRET);
-     }
-   }
-   ```
+### Overview
+Implement JWT service with proper error handling and integration with auth middleware.
 
-2. **src/middleware/auth.middleware.ts**
-   - Add authentication middleware for protected routes
+### Files to Modify (PRP Task Format)
+1. **MODIFY src/auth/jwt.service.ts:**
+   - FIND pattern: "export class AuthService"
+   - INJECT after line containing "constructor"
+   - PRESERVE existing method signatures
 
-### Test Strategy
-1. Unit test JWT service token generation
-2. Unit test token verification with valid/invalid tokens
-3. Integration test middleware with mock requests
-4. E2E test complete auth flow
+2. **MODIFY src/middleware/auth.middleware.ts:**
+   - FIND pattern: "export class AuthMiddleware"
+   - INJECT JWT verification logic
+   - KEEP existing error handling pattern identical
 
-### Validation Commands
-```bash
-npm test -- auth.test.ts
-npm run test:integration -- auth
-curl -X POST localhost:3000/auth/login -d '{"user":"test","pass":"test"}'
+### New Files to Create
+1. **CREATE src/auth/jwt.service.ts:**
+   - MIRROR pattern from: src/auth/base-auth.service.ts
+   - MODIFY class name to JWTService
+   - KEEP error handling pattern identical
+
+### Database Changes
+```sql
+-- Add JWT-related fields to users table
+ALTER TABLE users ADD COLUMN jwt_secret_hash VARCHAR(255);
 ```
+
+### Configuration
+```yaml
+# Add to config/settings.py
+JWT_SECRET: ${JWT_SECRET}
+JWT_EXPIRATION: 3600
+```
+
+### Test Strategy (PRP Validation Loop)
+- Level 1: Syntax & Style (ruff check, mypy)
+- Level 2: Unit Tests (following PRP test patterns)
+- Level 3: Integration Tests (following PRP validation commands)
+
+### Validation Commands (PRP-Aligned)
+```bash
+# Level 1: Syntax & Style
+ruff check src/auth/jwt.service.ts --fix
+mypy src/auth/jwt.service.ts
+
+# Level 2: Unit Tests
+def test_jwt_happy_path():
+    """Basic functionality works"""
+    service = JWTService()
+    token = service.generate_token("user123")
+    assert service.verify_token(token) == "user123"
+
+def test_jwt_validation_error():
+    """Invalid token raises ValidationError"""
+    service = JWTService()
+    with pytest.raises(ValidationError):
+        service.verify_token("invalid_token")
+
+# Run: uv run pytest test_jwt.py -v
+
+# Level 3: Integration Test
+uv run python -m src.main --dev
+curl -X POST http://localhost:8000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"user":"test","pass":"test"}'
+```
+
+### Rollback Plan
+1. Remove JWT-related code from auth services
+2. Revert database changes
+3. Restore original authentication flow
 
 ## Notes
 - Consider implementing refresh token rotation in future iteration

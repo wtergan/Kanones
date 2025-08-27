@@ -59,6 +59,8 @@ description: Entry point and system initialization for the Kanónes agentic rule
 - Plan before Act; PRP governs scope and validation.
 - Maintain bidirectional sync between `.vault/tasks/TASKS.md` and task files.
 - Validate first; then sync Vault (progress, patterns) and archive.
+ - Sync & Learn MUST also update `agent-notes.md` (extended handoff + session retro) distinct from concise handoff
+   in `active-context.md`.
 - See `@standards.md → Quality Gates` and `→ Archive Flow` for canonical rules.
 
 ## Quality Standards

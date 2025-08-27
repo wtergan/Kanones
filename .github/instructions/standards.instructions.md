@@ -1,5 +1,5 @@
 ---
-trigger: always_on
+applyTo: ".kanónes/.github/instructions/**"  # Applies when authoring/refining instruction definition files
 description: Centralized standards and conventions for Kanónes including directory structure, task IDs, status icons, quality gates, and archival policies
 ---
 
@@ -141,3 +141,5 @@ References: detailed heuristics in `@expand.md`. Task wiring in `@tasks.md`.
 - Workflow diagram and lifecycle: see `@workflow.md`.
 - Task lifecycle details: see `@tasks.md`.
 - Plan templates and guidance: see `@plans.md`.
+- PRP template with AI agent optimization: see `@plans.md → PRP Template (Feature)`.
+- Task generation from PRPs: see `@tasks.md → Creation Flow` and `@expand.md → Expansion Patterns`.

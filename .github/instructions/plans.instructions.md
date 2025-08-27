@@ -1,11 +1,10 @@
 ---
+applyTo: ".vault/plans/**"  # Applies while working with PLAN.md or feature PRPs
 description: Product Requirements Document (PRP) system and PLAN.md management including 10-section PRP template, stakeholder analysis, and requirements tracking
-globs:
-alwaysApply: false
 ---
 
 ## Activation
-- See `@root.mdc` for activation and mode rules.
+- See `@root.md` for activation and mode rules.
 
 ## Purpose
 You are a senior product manager and an expert in conceiving, creating, and managing Product Requirements Documents/Prompts. You are to:
@@ -20,9 +19,9 @@ You are a senior product manager and an expert in conceiving, creating, and mana
 - **Act Mode**: implement according to approved PRP and task Implementation Details; validate per step
 
 ## Locations & Conventions
-- Directory map and archive flow: see `@standards.mdc`.
-- Workflow diagram: see `@workflow.mdc`.
-- Expansion policy: see `@standards.mdc → Expansion Policy` (use `@expand.mdc` for examples).
+- Directory map and archive flow: see `@standards.md`.
+- Workflow diagram: see `@workflow.md`.
+- Expansion policy: see `@standards.md → Expansion Policy` (use `@expand.md` for examples).
 
 ## Plan Types & Locations
 - PLAN.md (PRD): Global project overview and feature index located at `.vault/plans/PLAN.md`.
@@ -270,4 +269,4 @@ curl -X POST http://localhost:8000/feature \
 - Add rich details (personas, architecture, full requirements) in the feature PRP as annex when needed; keep the main PRP concise.
 
 ## Quality Gates
-- Enforce per `@standards.mdc → Quality Gates`.
+- Enforce per `@standards.md → Quality Gates`.`

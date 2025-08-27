@@ -1,7 +1,7 @@
 ---
 description: Entry point and system initialization for the Kanónes agentic ruleset - handles session startup, mode selection, and core workflow coordination
 globs:
-alwaysApply: true
+alwaysApply: false
 ---
 
 ## Activation
@@ -32,9 +32,11 @@ alwaysApply: true
    - Read `.vault/memory/active-context.md` → current state
    - Read `.vault/memory/patterns.md` → conventions
    - Skim `.vault/memory/progress.md` → recent changes
+   - Skim `.vault/memory/agent-notes.md` → per-agent prefs & last cross-agent handoff (extended)
 2. **Check Active Work**
    - Review `.vault/tasks/TASKS.md` for pending tasks
    - Check `.vault/plans/PLAN.md` for project overview
+   - Check `.vault/plans/features/` for active feature PRPs
 3. **Announce Ready State**
    - Summarize understanding and intended scope
    - Confirm mode (Plan/Act) with user if unclear
@@ -60,6 +62,8 @@ alwaysApply: true
 - Plan before Act; PRP governs scope and validation.
 - Maintain bidirectional sync between `.vault/tasks/TASKS.md` and task files.
 - Validate first; then sync Vault (progress, patterns) and archive.
+ - Sync & Learn MUST also update `agent-notes.md` (extended handoff + session retro) distinct from concise handoff
+   in `active-context.md`.
 - See `@standards.mdc → Quality Gates` and `→ Archive Flow` for canonical rules.
 
 ## Quality Standards
