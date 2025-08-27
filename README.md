@@ -99,7 +99,7 @@ An agent-ready ruleset for Cursor, VS Code, and Windsurf that combines:
 1. **Setup Rules**
    - Copy `.cursor/rules/.kanónes/` to project root `.cursor/rules/.kanónes/`
    - Or use `.vscode/rules/.kanónes/` or `.windsurf/rules/.kanónes/` for other IDEs
-   - IDE will auto-discover and activate the rules
+   - IDE or agent will auto-discover and activate the rules
 
 2. **Initialize Context Vault**
    - Create `.vault/memory/` directory in project root
